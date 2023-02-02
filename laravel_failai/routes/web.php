@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Status;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +19,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/category/{id}', function ($id) {
+    return Category::firstOrCreate(
+        [
+            'id' => $id
+        ],
+        [
+            'name' => 'Kompiuterija',
+            'slug' => 'kompiuterija',
+            'description' => 'Viskas apie kompiuterius',
+            'image' => 'kompiuterija.jpg',
+            'status' => 1
+        ]
+    );
+});
+
+Route::get('/products', function() {
+    return User::all();
 });

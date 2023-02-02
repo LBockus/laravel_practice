@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $slug
  * @property string $description
- * @property string $img
+ * @property string $image
  * @property int $status
  * @property int $parent_id
  * @property int $sort_order
@@ -22,4 +22,14 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+      'name',
+      'slug',
+      'description',
+      'image',
+      'status',
+      'parent_id',
+      'sort_order'
+    ];
 }
