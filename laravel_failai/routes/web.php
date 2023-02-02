@@ -1,10 +1,9 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Product;
-use App\Models\Status;
-use App\Models\User;
+use Database\Factories\ProductFactory;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,21 +20,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/category/{id}', function ($id) {
-    return Category::firstOrCreate(
+
+Route::get('/product/{id}', function ($id) {
+    $product = Product::firstOrCreate(
         [
             'id' => $id
         ],
         [
-            'name' => 'Kompiuterija',
-            'slug' => 'kompiuterija',
-            'description' => 'Viskas apie kompiuterius',
-            'image' => 'kompiuterija.jpg',
-            'status' => 1
+            'name' => 'Londonas to Paris',
+            'category_id' => 5,
+            'price' => 1000,
+            'status_id' => 5,
+            'slug' => 'london-to-parisasdfgh',
+            'description' => 'London to Paris',
+            'image' => 'london-to-paris.jpg',
+            'color' => 'red',
+            'size' => 'XL'
         ]
-    );
+    )->with('category')->first();
+    return $product;
 });
 
-Route::get('/products', function() {
-    return User::all();
+Route::get('/products', function () {
+    return Product::all();
+});
+
+Route::get('/products-del', function () {
+    return Product::all()->map(function ($product) {
+        $product->delete();
+    });
+});
+
+Route::get('/new-product', function () {
+    return ProductFactory::new()->create();
 });

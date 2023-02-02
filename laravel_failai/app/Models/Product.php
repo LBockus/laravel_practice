@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * class Product
+ * Class Product
  * @package App\Models
  *
  * @property int $id
@@ -16,32 +16,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string $image
  * @property int $category_id
- * @property int $brand_id
  * @property string $color
  * @property string $size
- * @property float $price
- * @property int $status
+ * @property int $price
+ * @property int $status_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
-
 class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'description',
-        'image',
-        'color',
-        'size',
-        'price',
-        'status'
-    ];
+    protected $guarded = [];
 
-    protected $guarded = [
-        'category_id',
-        'brand_id'
-    ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

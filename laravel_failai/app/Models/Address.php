@@ -8,19 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property  int $country_id
+ * @property string $name
+ * @property string $country
  * @property string $city
+ * @property string $zip
  * @property string $street
- * @property Carbon @created_at
- * @property Carbon @updated_at
+ * @property string $house_number
+ * @property string $apartment_number
+ * @property string $state
+ * @property string $type
+ * @property string $additional_info
+ * @property int $user_id
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
-
 class Address extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'city',
-        'street'
-    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

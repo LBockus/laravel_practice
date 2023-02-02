@@ -8,15 +8,29 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property string $name
- * @property string $amount
+ * @property int $order_id
+ * @property string $product_name
+ * @property int $product_id
+ * @property int $quantity
+ * @property string $price
  * @property int $status_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ *
  */
-class Payment extends Model
+class OrderDetails extends Model
 {
     use HasFactory;
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
     public function status()
     {

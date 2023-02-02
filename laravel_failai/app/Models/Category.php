@@ -12,24 +12,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $slug
  * @property string $description
  * @property string $image
- * @property int $status
+ * @property int $status_id
  * @property int $parent_id
  * @property int $sort_order
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @method static updateOrCreate(string[] $array, array $array1)
  */
-
 class Category extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-      'name',
-      'slug',
-      'description',
-      'image',
-      'status',
-      'parent_id',
-      'sort_order'
-    ];
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }

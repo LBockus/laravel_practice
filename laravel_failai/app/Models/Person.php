@@ -2,32 +2,32 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property string $first_name
- * @property string $last_name
+ * @property string $name
+ * @property string $surname
+ * @property string $personal_code
+ * @property string $email
+ * @property string $phone
+ * @property int $user_id
  * @property int $address_id
- * @property int $order_id
- * @property int $status_id
- * @property Carbon $created_at
- * @property Carbon $updated_at
+ * @property string $created_at
+ * @property string $updated_at
  */
-
 class Person extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'first_name',
-        'last_name',
-    ];
-    protected $guarded = [
-        'address_id',
-        'order_id',
-        'status_id'
-    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
 }
