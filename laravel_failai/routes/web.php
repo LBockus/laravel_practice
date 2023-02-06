@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Database\Factories\ProductFactory;
 use Illuminate\Support\Facades\Route;
@@ -16,41 +23,13 @@ use App\Models\Category;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomeController::class);
 
-
-Route::get('/product/{id}', function ($id) {
-    $product = Product::firstOrCreate(
-        [
-            'id' => $id
-        ],
-        [
-            'name' => 'Londonas to Paris',
-            'category_id' => 5,
-            'price' => 1000,
-            'status_id' => 5,
-            'slug' => 'london-to-parisasdfgh',
-            'description' => 'London to Paris',
-            'image' => 'london-to-paris.jpg',
-            'color' => 'red',
-            'size' => 'XL'
-        ]
-    )->with('category')->first();
-    return $product;
-});
-
-Route::get('/products', function () {
-    return Product::all();
-});
-
-Route::get('/products-del', function () {
-    return Product::all()->map(function ($product) {
-        $product->delete();
-    });
-});
-
-Route::get('/new-product', function () {
-    return ProductFactory::new()->create();
-});
+Route::resources([
+    'products' => ProductController::class,
+    'categories' => CategoryController::class,
+    'orders' => OrderController::class,
+    'statuses' => StatusController::class,
+    'addresses' => AddressController::class,
+    'users' => UserController::class,
+]);
