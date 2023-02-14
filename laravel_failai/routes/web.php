@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\StatusController;
-use App\Http\Controllers\UserController;
-use App\Models\Product;
-use Database\Factories\ProductFactory;
+use App\Http\Controllers\Admin\AddressController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\PersonController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\StatusController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +26,21 @@ use App\Models\Category;
 
 Route::get('/', HomeController::class);
 
-Route::resources([
-    'products' => ProductController::class,
-    'categories' => CategoryController::class,
-    'orders' => OrderController::class,
-    'statuses' => StatusController::class,
-    'addresses' => AddressController::class,
-    'users' => UserController::class,
-]);
+Route::get('/product/{product:slug}', [ProductsController::class, 'show'])->name('product.show');
+
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('/', DashBoardController::class)->name('admin.dashboard');
+    Route::resources([
+        'products' => ProductController::class,
+        'categories' => CategoryController::class,
+        'orders' => OrderController::class,
+        'statuses' => StatusController::class,
+        'addresses' => AddressController::class,
+        'users' => UserController::class,
+        'persons' => PersonController::class,
+        'paymentTypes' => PaymentController::class,
+    ]);
+});
+
+
+
