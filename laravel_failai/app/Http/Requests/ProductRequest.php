@@ -19,10 +19,6 @@ class ProductRequest extends FormRequest
             'category_id' => ['required','integer', 'min:1', 'exists:categories,id'],
             'status_id' => ['required','integer', 'min:1', 'exists:statuses,id'],
             'slug' => ['required', 'string', 'min:3', 'max:100'],
-            'description' => ['nullable', 'string', 'min:3'],
-            'image' => ['nullable'],
-            'color' => ['nullable', 'in_array:Red,Green,Blue,Black,White'],
-            'size' => ['nullable', 'in_array:XS,S,M,L,XL'],
         ];
     }
 

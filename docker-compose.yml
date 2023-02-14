@@ -11,6 +11,7 @@ services:
     environment:
       APACHE_SERVER_NAME: laravel.local
       APPLICATION_ENV: development
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
 
   db:
     image: mysql:latest
