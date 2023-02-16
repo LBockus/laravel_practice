@@ -4,6 +4,8 @@ namespace App\Managers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use PHPUnit\Util\Exception;
 
 class FileManager
 {
@@ -23,10 +25,15 @@ class FileManager
                 'path' => public_path($path) . '/' . $clientOriginalName,
                 'url' => '/' . $path . '/' . $clientOriginalName,
                 'name' => $clientOriginalName,
-                'size' => $image->getSize(),
+                //'size' => $image->getSize(),
                 'extension' => $image->getClientOriginalExtension()
             ]);
-
         }
+        throw new Exception();
+    }
+
+    public function removeFile($file): void
+    {
+        $file->delete();
     }
 }

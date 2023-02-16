@@ -62,10 +62,9 @@ class ProductController extends Controller
     function update(Request $request, Product $product)
     {
         $product->update($request->all());
-
         // Paimti sena paveiksla ir istrinti ji is serverio
-        // $this->fileManager->removeFile($product->image, ??, ??);
         $file = $this->fileManager->saveFile($request, 'foto','img/products');
+        $this->fileManager->removeFile($file);
         // Ši kodo dalis atsakinga uz paveiksliuko isaugojima produkto lenteleje
         $product->image = $file->url;
         $product->save();

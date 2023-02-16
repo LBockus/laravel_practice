@@ -120,6 +120,9 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/doctrine/event-manager" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/doctrine/cache" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/laravel/breeze" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/inertiajs/inertia-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/tightenco/ziggy" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

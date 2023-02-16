@@ -123,6 +123,9 @@
       <path value="$PROJECT_DIR$/laravel_failai/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/laravel_failai/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/laravel_failai/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/laravel_failai/vendor/laravel/breeze" />
+      <path value="$PROJECT_DIR$/laravel_failai/vendor/inertiajs/inertia-laravel" />
+      <path value="$PROJECT_DIR$/laravel_failai/vendor/tightenco/ziggy" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
