@@ -17,4 +17,16 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
+
+    public const TYPES = ['order', 'payment', 'category', 'user', 'product', 'order_details'];
+
+    protected $fillable = [
+        'name',
+        'type',
+    ];
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }

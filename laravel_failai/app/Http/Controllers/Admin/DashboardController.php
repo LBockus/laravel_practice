@@ -6,11 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
         $latestOrders = Order::latest()->take(5)->get();
         $latestProducts = Product::latest()->take(5)->get();

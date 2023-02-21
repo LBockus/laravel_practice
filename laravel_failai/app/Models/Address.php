@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @property string $additional_info
  * @property int $user_id
+ * @property User $user
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
@@ -26,8 +27,38 @@ class Address extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'country',
+        'city',
+        'zip',
+        'street',
+        'house_number',
+        'apartment_number',
+        'state',
+        'type',
+        'additional_info',
+        'user_id',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function __toString(): string
+    {
+        return implode(
+            ' ',
+            array_filter([
+                $this->street,
+                $this->house_number,
+                $this->apartment_number,
+                $this->zip,
+                $this->city,
+                $this->state,
+                $this->country,
+            ]),
+        );
     }
 }

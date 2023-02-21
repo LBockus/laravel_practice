@@ -3,39 +3,45 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PersonRequest;
+use App\Http\Requests\PersonStoreRequest;
+use App\Http\Requests\PersonUpdateRequest;
+use App\Managers\PersonManager;
 use App\Models\Person;
 
 class PersonController extends Controller
 {
+    public function __construct(protected PersonManager $manager)
+    {
+    }
+
     public function index()
     {
-        $persons = Person::query()->get();
-        return view('persons.index', compact('persons'));
+        $persons = Person::all();
+        return view('person.index', ['persons' => $persons]);
     }
 
     public function create()
     {
-        return view('persons.create');
+        return view('person.create');
     }
 
-    public function store(PersonRequest $request)
+    public function store(PersonStoreRequest $request)
     {
-        $person = Person::create($request->all());
+        $person = $this->manager->createCustomer($request);
         return redirect()->route('persons.show', $person);
     }
 
     public function show(Person $person)
     {
-        return view('persons.show', ['person' => $person]);
+        return view('person.show', ['person' => $person]);
     }
 
     public function edit(Person $person)
     {
-        return view('persons.edit', compact('person'));
+        return view('person.edit', compact('person'));
     }
 
-    public function update(PersonRequest $request, Person $person)
+    public function update(PersonUpdateRequest $request, Person $person)
     {
         $person->update($request->all());
         return redirect()->route('persons.show', $person);
